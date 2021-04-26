@@ -2,6 +2,7 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Card from 'react-bootstrap/Card';
 import './Login.css';
+import { useAuth0 } from '@auth0/auth0-react';
 
 class Login extends React.Component {
   render() {
@@ -17,6 +18,17 @@ class Login extends React.Component {
       </Card>
     )
   }
+}
+
+function LoginButton() {
+  const {
+    isAuthenticated,
+    loginWithRedirect,
+  } = useAuth0();
+
+  return !isAuthenticated && (
+    <button onClick={loginWithRedirect}>Log in</button>
+  );
 }
 
 export default Login;
