@@ -5,6 +5,7 @@ import Footer from './Footer';
 import MyFavoriteBooks from './MyFavoriteBooks';
 import { withAuth0 } from '@auth0/auth0-react';
 import Login from './Login';
+import LogoutButton from './LogoutButton';
 import Profile from './profile';
 import {
   BrowserRouter as Router,
@@ -22,6 +23,7 @@ class App extends React.Component {
         <Router>
           {/* <IsLoadingAndError> */}
           <Header />
+          <LogoutButton />
           <Switch>
             <Route exact path="/">
 
