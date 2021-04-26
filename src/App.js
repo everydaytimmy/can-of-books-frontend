@@ -1,14 +1,17 @@
 import React from 'react';
 import Header from './Header';
-import IsLoadingAndError from './IsLoadingAndError';
+// import IsLoadingAndError from './IsLoadingAndError';
 import Footer from './Footer';
 import MyFavoriteBooks from './MyFavoriteBooks';
+import { withAuth0 } from '@auth0/auth0-react';
+import Login from './Login';
 import Profile from './profile';
 import {
   BrowserRouter as Router,
   Switch,
   Route
 } from "react-router-dom";
+
 
 class App extends React.Component {
 
@@ -17,28 +20,28 @@ class App extends React.Component {
     return (
       <>
         <Router>
-          <IsLoadingAndError>
-            <Header />
-            <Switch>
-              <Route exact path="/">
+          {/* <IsLoadingAndError> */}
+          <Header />
+          <Switch>
+            <Route exact path="/">
 
-                <MyFavoriteBooks />
+              {/* TODO: if the user is logged in, render the `MyFavoriteBooks` component, if they are not, render the `Login` component */}
+              {this.props.auth0.isAuthenticated ? <MyFavoriteBooks /> : <Login />}
 
-                {/* TODO: if the user is logged in, render the `MyFavoriteBooks` component, if they are not, render the `Login` component */}
-              </Route>
-              <Route exact path="/profile">
+            </Route>
+            <Route exact path="/profile">
 
-                <Profile />
+              <Profile />
 
-                {/* TODO: if the user is logged in, render the `MyFavoriteBooks` component, if they are not, render the `Login` component */}
-              </Route>
-            </Switch>
-            <Footer />
-          </IsLoadingAndError>
+              {/* TODO: if the user is logged in, render the `MyFavoriteBooks` component, if they are not, render the `Login` component */}
+            </Route>
+          </Switch>
+          <Footer />
+          {/* </IsLoadingAndError> */}
         </Router>
       </>
     );
   }
 }
 
-export default App;
+export default withAuth0(App);
