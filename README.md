@@ -44,4 +44,4 @@ Start time: 1315
 
 Finish time: 1647
 
-Actual time needed to complete: 2.5 hours
+Actual time needed to complete: 3.5 hours
