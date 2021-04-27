@@ -8,7 +8,15 @@ import Jumbotron from 'react-bootstrap/Jumbotron';
 class Profile extends Component {
   render() {
     const { user } = this.props.auth0;
-
+    // TODO: redirect if user not logged in 
+    if (!user) {
+      return (
+        <>
+          <h1>Unauthorized</h1>
+          <h2>Leave This Place</h2>
+        </>
+      )
+    }
     return (
       < Jumbotron >
         <img src={user.picture} alt={user.name} />
