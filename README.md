@@ -34,3 +34,14 @@ We will have brief standups each day before starting the lab.
 If one person is pulling all the weight while the other person is not contributing then the workhorse person will commission a hit on the sandbagger.
 Alternatively if one person is taking over the project and not letting the other member contribute then that would be kinda weird. We can also tattle.
 How will you approach each other and the challenge of building an application knowing that it is impossible for two people to be at the exact same place in understanding and skill level? - Fire communication skills - see above.
+
+
+Name of feature: Add login and logout buttons
+
+Estimate of time needed to complete: 3 hours
+
+Start time: 1315
+
+Finish time: 1647
+
+Actual time needed to complete: 3.5 hours
