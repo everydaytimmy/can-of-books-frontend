@@ -31,7 +31,7 @@ class App extends React.Component {
       try {
         const books = await axios.get(`http://localhost:3001/books?email=${this.props.auth0.user.email}`)
         console.log(books.data);
-        typeof books.data === 'string' ? this.setState( {error: 'No Books'} ) : this.setState({ books: books.data });
+        typeof books.data === 'string' ? this.setState( {name: 'No Books'} ) : this.setState({ books: books.data });
       } catch (error) {
         console.log(error);
       }
@@ -74,15 +74,3 @@ class App extends React.Component {
 
 export default withAuth0(App);
 
-
-// getMovies = async () => {
-//   const movieURL = `https://city-explorer-tv.herokuapp.com/movie?searchQuery=${this.state.searchQuery}`
-
-//   // const movieURL = `http://localhost:3001/movie?searchQuery=${this.state.searchQuery}`
-
-//   const movieResponse = await axios.get(movieURL);
-
-//   this.setState({
-//     movie: movieResponse.data,
-//   })
-// }
