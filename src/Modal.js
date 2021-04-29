@@ -12,9 +12,19 @@ class AddBook extends React.Component {
       <>
         <Modal show={this.props.show} close={this.props.close}>
           <form onSubmit={(e) => this.props.getMyGifts(e)}>
-            <label>What is the birthday person's email?</label>
+            <label>Book Title</label>
             <input onChange={(e) => this.props.updateEmail(e.target.value)}></input>
-            <button type='submit'>submit</button>
+            <br></br>
+            <label>Book Description</label>
+            <input onChange={(e) => this.props.updateEmail(e.target.value)}></input>
+            <br></br>
+            <label>Status</label>
+            <input onChange={(e) => this.props.updateEmail(e.target.value)}></input>
+            <br></br>
+            <Modal.Footer>
+            <Button variant="secondary">submit</Button>
+            <Button variant="primary" onClick={this.props.close}>close</Button>
+            </Modal.Footer>
           </form>
         </Modal>
       </>

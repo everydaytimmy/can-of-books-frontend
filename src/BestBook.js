@@ -32,8 +32,8 @@ class BestBook extends React.Component {
             return (
               <Card style={{ minWidth: '18rem' }} key={index}>
                 <Card.Title>{n.name}</Card.Title>
-                <Card.Text></Card.Text>
-                <Card.Text></Card.Text>
+                <Card.Text>{n.description}</Card.Text>
+                <Card.Text>{n.status}</Card.Text>
               </Card>
             )
           })
