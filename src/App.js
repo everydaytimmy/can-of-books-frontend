@@ -54,6 +54,7 @@ class App extends React.Component {
           <IsLoadingAndError>
             <Header />
             <LogoutButton />
+            <br></br>
             <Switch>
               <Route exact path="/">
 
@@ -67,7 +68,6 @@ class App extends React.Component {
               </Route>
 
               <Route exact path="/books">
-
                 <BestBook
                   bookList={this.state.books}
                   bookQuery={bookQuery}
@@ -76,6 +76,7 @@ class App extends React.Component {
 
               </Route>
             </Switch>
+            <br></br>
             <Footer />
           </IsLoadingAndError>
         </Router>

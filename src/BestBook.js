@@ -25,8 +25,8 @@ class BestBook extends React.Component {
   render() {
     return (
       <>
-        <Button onClick={this.onOpen}>Add A Book</Button>
-
+        <Button variant="outline-dark" block onClick={this.onOpen}>Add A Book</Button>
+        <br></br>
         <CardDeck>
           {this.props.bookList.map((n, index) => {
             return (
