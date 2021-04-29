@@ -13,9 +13,9 @@ class Header extends React.Component {
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Navbar.Brand>My Favorite Books</Navbar.Brand>
         <Nav className="mr-auto">
-        <Nav.Link to="/"> Home </Nav.Link>
-        {this.props.auth0.isAuthenticated && <Nav.Link to="/profile"> Profile </Nav.Link>}
-        {this.props.auth0.isAuthenticated && <Nav.Link to="/books"> Books </Nav.Link>}
+        <Nav.Link href="/"> Home </Nav.Link>
+        {this.props.auth0.isAuthenticated && <Nav.Link href="/profile"> Profile </Nav.Link>}
+        {this.props.auth0.isAuthenticated && <Nav.Link href="/books"> Books </Nav.Link>}
         </Nav>
       </Navbar>
     );
