@@ -8,6 +8,7 @@ import Login from './Login';
 import LogoutButton from './LogoutButton';
 import Profile from './profile';
 import BestBook from './BestBook.js'
+import axios from 'axios';
 import {
   BrowserRouter as Router,
   Switch,
@@ -20,12 +21,22 @@ class App extends React.Component {
     super(props);
     this.state = {
       books: [],
+      
     }
   }
 
-
-
   render() {
+    
+    const bookQuery  = async (e) => {
+      try {
+        const books = await axios.get(`http://localhost:3001/books?email=${this.props.auth0.user.email}`)
+        console.log(books.data);
+        typeof books.data === 'string' ? this.setState( {error: 'No Books'} ) : this.setState({ books: books.data });
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
     console.log('app', this.props);
     return (
       <>
@@ -35,8 +46,7 @@ class App extends React.Component {
             <LogoutButton />
             <Switch>
               <Route exact path="/">
-
-                {/* TODO: if the user is logged in, render the `MyFavoriteBooks` component, if they are not, render the `Login` component */}
+                
                 {this.props.auth0.isAuthenticated ? <MyFavoriteBooks /> : <Login />}
 
               </Route>
@@ -44,13 +54,13 @@ class App extends React.Component {
 
                 <Profile />
 
-                {/* TODO: if the user is logged in, render the `MyFavoriteBooks` component, if they are not, render the `Login` component */}
               </Route>
 
               <Route exact path="/books">
 
                 <BestBook
-                  bookList={this.state.books} />
+                  bookList={this.state.books}
+                  bookQuery={bookQuery} />
 
               </Route>
             </Switch>
