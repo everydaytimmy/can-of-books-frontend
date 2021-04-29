@@ -21,17 +21,27 @@ class App extends React.Component {
     super(props);
     this.state = {
       books: [],
-      
+      generateBook: [],
     }
   }
 
   render() {
-    
-    const bookQuery  = async (e) => {
+
+    const bookQuery = async (e) => {
       try {
         const books = await axios.get(`http://localhost:3001/books?email=${this.props.auth0.user.email}`)
         console.log(books.data);
-        typeof books.data === 'string' ? this.setState( {name: 'No Books'} ) : this.setState({ books: books.data });
+        typeof books.data === 'string' ? this.setState({ name: 'No Books' }) : this.setState({ books: books.data });
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    const newBook = async (e) => {
+      try {
+        const generateBook = await axios.post(`http://localhost:3001/books?email=${this.props.auth0.user.email}`, { name: this.state.name, description: this.state.description, status: this.state.status });
+        const newBooksArray = generateBook.data;
+        this.setState({ generateBook: newBooksArray });
       } catch (error) {
         console.log(error);
       }
@@ -46,7 +56,7 @@ class App extends React.Component {
             <LogoutButton />
             <Switch>
               <Route exact path="/">
-                
+
                 {this.props.auth0.isAuthenticated ? <MyFavoriteBooks /> : <Login />}
 
               </Route>
@@ -60,7 +70,9 @@ class App extends React.Component {
 
                 <BestBook
                   bookList={this.state.books}
-                  bookQuery={bookQuery} />
+                  bookQuery={bookQuery}
+                  newBook={newBook}
+                />
 
               </Route>
             </Switch>
