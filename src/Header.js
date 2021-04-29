@@ -13,6 +13,7 @@ class Header extends React.Component {
         <Navbar.Brand>My Favorite Books</Navbar.Brand>
         <Link to="/">Home</Link>
         {this.props.auth0.isAuthenticated && <Link to="/profile">Profile</Link>}
+        {this.props.auth0.isAuthenticated && <Link to="/books">Books</Link>}
       </Navbar>
     );
   }
