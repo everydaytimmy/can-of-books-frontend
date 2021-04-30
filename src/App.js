@@ -26,7 +26,21 @@ class App extends React.Component {
     }
   }
 
+
   render() {
+
+    // === === === Delete Book Function === === === //
+    const deleteBook = async (event) => {
+      const id = event.target.name;
+      try {
+        const newBooksArray = await axios.delete(`http://localhost:3001/books/${id}?email=${this.props.auth0.user.email}`)
+        alert(newBooksArray);
+        this.setState({ books: newBooksArray });
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
 
     const bookQuery = async (e) => {
       try {
@@ -38,9 +52,12 @@ class App extends React.Component {
       }
     }
 
+
+    // === === === Add Book Function === === === //
+
     const newBook = async (e, name, description, status) => {
       e.preventDefault();
-console.log('string', this.state);
+      console.log('string', this.state);
       try {
         const generateBook = await axios.post(`http://localhost:3001/books?email=${this.props.auth0.user.email}`, { name, description, status });
         const newBooksArray = generateBook.data;
@@ -50,6 +67,7 @@ console.log('string', this.state);
         console.log(error);
       }
     }
+
 
     console.log('app', this.props);
     return (
@@ -76,6 +94,7 @@ console.log('string', this.state);
                   bookList={this.state.books}
                   bookQuery={bookQuery}
                   newBook={newBook}
+                  deleteBook={deleteBook}
                 />
 
               </Route>
