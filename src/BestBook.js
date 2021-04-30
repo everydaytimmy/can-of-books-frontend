@@ -4,9 +4,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Card from 'react-bootstrap/Card';
 import CardDeck from 'react-bootstrap/CardDeck';
 import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
+// import Modal from 'react-bootstrap/Modal';
 import AddBook from './Modal.js'
-
 
 
 class BestBook extends React.Component {
@@ -14,7 +13,7 @@ class BestBook extends React.Component {
     super(props);
     this.state = {
       showModal: false,
-      
+
     }
   }
 
@@ -23,6 +22,7 @@ class BestBook extends React.Component {
 
   componentDidMount() { this.props.bookQuery() }
 
+
   render() {
     console.log(this.props.bookList);
     return (
@@ -30,12 +30,16 @@ class BestBook extends React.Component {
         <Button variant="outline-dark" block onClick={this.onOpen}>Add A Book</Button>
         <br></br>
         <CardDeck>
-          {this.props.bookList.map((n, index) => {
+          {this.props.bookList.map((book, index) => {
             return (
               <Card style={{ minWidth: '18rem' }} key={index}>
-                <Card.Title>{n.name}</Card.Title>
-                <Card.Text>{n.description}</Card.Text>
-                <Card.Text>{n.status}</Card.Text>
+                <Card.Title>{book.name}</Card.Title>
+                <Card.Text>{book.description}</Card.Text>
+                <Card.Text>{book.status}</Card.Text>
+
+                {/* DELETE BUTTON */}
+                <Button variant="light" onClick={this.props.deleteBook} name={book._id}> Delete </Button>
+
               </Card>
             )
           })
@@ -52,9 +56,6 @@ class BestBook extends React.Component {
       </>
     );
   }
-
-
-
 }
 
 export default withAuth0(BestBook);
