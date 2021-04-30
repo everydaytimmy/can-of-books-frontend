@@ -22,6 +22,7 @@ class App extends React.Component {
     this.state = {
       books: [],
       generateBook: [],
+      displayAddBook: false,
     }
   }
 
@@ -37,11 +38,14 @@ class App extends React.Component {
       }
     }
 
-    const newBook = async (e) => {
+    const newBook = async (e, name, description, status) => {
+      e.preventDefault();
+console.log('string', this.state);
       try {
-        const generateBook = await axios.post(`http://localhost:3001/books?email=${this.props.auth0.user.email}`, { name: this.state.name, description: this.state.description, status: this.state.status });
+        const generateBook = await axios.post(`http://localhost:3001/books?email=${this.props.auth0.user.email}`, { name, description, status });
         const newBooksArray = generateBook.data;
-        this.setState({ generateBook: newBooksArray });
+        console.log(newBooksArray);
+        this.setState({ books: newBooksArray, displayAddBook: false });
       } catch (error) {
         console.log(error);
       }

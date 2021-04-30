@@ -6,24 +6,33 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 
 class AddBook extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: '',
+      descrption: '',
+      status: '',
+    }
+  }
 
   render() {
+    
     return (
       <>
         <Modal show={this.props.show} close={this.props.close}>
-          <form onSubmit={(e) => this.props.getMyGifts(e)}>
+          <form onSubmit={(e) => this.props.newBook(e, this.state.name, this.state.description, this.state.status)}>
             <label>Book Title</label>
-            <input onChange={(e) => this.props.updateEmail(e.target.value)}></input>
+            <input onChange={(e) => this.setState({name:e.target.value})}></input>
             <br></br>
             <label>Book Description</label>
-            <input onChange={(e) => this.props.updateEmail(e.target.value)}></input>
+            <input onChange={(e) => this.setState({description:e.target.value})}></input>
             <br></br>
             <label>Status</label>
-            <input onChange={(e) => this.props.updateEmail(e.target.value)}></input>
+            <input onChange={(e) => this.setState({status:e.target.value})}></input>
             <br></br>
             <Modal.Footer>
-            <Button variant="secondary">submit</Button>
-            <Button variant="primary" onClick={this.props.close}>close</Button>
+              <Button variant="secondary" type='submit' onClick={this.props.close}>submit</Button>
+              <Button variant="primary" onClick={this.props.close}>close</Button>
             </Modal.Footer>
           </form>
         </Modal>
@@ -34,13 +43,3 @@ class AddBook extends React.Component {
 
 export default AddBook;
 
-
-
-// <Modal show={this.props.show} close={this.props.close}>
-// <Form id="form"> Add A Book </Form>
-// <Form.Group>
-//   <Form.Label>Book</Form.Label>
-//   <Form.Control type="input"
-// </Form.Group>
-// <Button onClick={this.props.close}> Close </Button>
-// </Modal>

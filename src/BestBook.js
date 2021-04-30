@@ -14,6 +14,7 @@ class BestBook extends React.Component {
     super(props);
     this.state = {
       showModal: false,
+      
     }
   }
 
@@ -23,6 +24,7 @@ class BestBook extends React.Component {
   componentDidMount() { this.props.bookQuery() }
 
   render() {
+    console.log(this.props.bookList);
     return (
       <>
         <Button variant="outline-dark" block onClick={this.onOpen}>Add A Book</Button>
